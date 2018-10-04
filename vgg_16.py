@@ -11,6 +11,7 @@ from keras.layers import Dense, Dropout, Activation
 from keras.optimizers import SGD
 from keras.datasets import mnist
 from keras.callbacks import TensorBoard
+from keras.layers import Dense, Dropout, Flatten
 
 path_weights_imagenet = 'F:/pudding/vgg16_weights_tf_dim_ordering_tf_kernels.h5'
 
@@ -52,16 +53,22 @@ def read_minist():
 
 def build_vgg16():
     model = VGG16(weights='imagenet',include_top=False)
+    model.add(Flatten())
+    model.add(Dense(2,activation='softmax'))
     return model
 
 
 def build_vgg19():
     model = VGG19(weights='imagenet',include_top=False)
+    model.add(Flatten())
+    model.add(Dense(2,activation='softmax'))
     return model
 
 
 def build_resnet50():
     model = ResNet50(weights='imagenet',include_top=False)
+    model.add(Flatten())
+    model.add(Dense(2,activation='softmax'))
     return model
 
 
